@@ -2,29 +2,26 @@ export const handlePending = state => {
   state.isLoading = true;
 };
 
-export const handleFetchContacts = (state, action) => {
+export const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+export const handleGetAllContactsFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
   state.items = action.payload;
 };
 
-export const handleAddContact = (state, action) => {
+export const handleAddContactFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.items.unshift(action.payload);
+  state.items.push(action.payload);
 };
 
-export const handleDeleteContact = (state, action) => {
+export const handleDeleteContactFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  const index = state.items.findIndex(
-    contact => contact.id === action.payload.id
-  );
-
+  const index = state.items.findIndex(item => item.id === action.payload.id);
   state.items.splice(index, 1);
-};
-
-export const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
 };

@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, fetchContacts, deleteContact } from './operations';
+import { fetchContacts, addContact, deleteContact } from './operations';
 import {
-  handleAddContact,
-  handleDeleteContact,
-  handleFetchContacts,
+  handleAddContactFulfilled,
+  handleDeleteContactFulfilled,
+  handleGetAllContactsFulfilled,
   handlePending,
   handleRejected,
 } from './handlers';
 
-export const contactsSlice = createSlice({
+const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     items: [],
@@ -18,13 +18,13 @@ export const contactsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, handlePending)
-      .addCase(fetchContacts.fulfilled, handleFetchContacts)
+      .addCase(fetchContacts.fulfilled, handleGetAllContactsFulfilled)
       .addCase(fetchContacts.rejected, handleRejected)
       .addCase(addContact.pending, handlePending)
-      .addCase(addContact.fulfilled, handleAddContact)
+      .addCase(addContact.fulfilled, handleAddContactFulfilled)
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
-      .addCase(deleteContact.fulfilled, handleDeleteContact)
+      .addCase(deleteContact.fulfilled, handleDeleteContactFulfilled)
       .addCase(deleteContact.rejected, handleRejected);
   },
 });

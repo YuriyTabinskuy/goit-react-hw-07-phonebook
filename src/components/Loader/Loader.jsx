@@ -1,21 +1,16 @@
-import { Oval } from 'react-loader-spinner';
-import { LoaderWrapper } from './Loader.styled';
+import { Puff } from 'react-loader-spinner';
 
-export const Loader = ({ size }) => {
+export const Loader = () => {
   return (
-    <LoaderWrapper>
-      <Oval
-        height={size}
-        width={size}
-        color="#4252b7"
-        wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-        ariaLabel="oval-loading"
-        secondaryColor="#4252b7"
-        strokeWidth={2}
-        strokeWidthSecondary={2}
-      />
-    </LoaderWrapper>
+    <Puff
+      height="20"
+      width="20"
+      radius={1}
+      color="cyan"
+      ariaLabel="puff-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+    />
   );
 };
